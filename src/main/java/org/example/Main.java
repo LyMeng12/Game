@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -47,8 +48,208 @@ public class Main {
                             System.out.println("Login Successfully.🤖");
                             ArrayList<User> users = new ArrayList<>();
                             users.add(new User(rs.getString("Name"),rs.getDouble("Money")));
-                            System.out.println("=============================");
-                            System.out.println("\t  Welcome "+users.get(0).getName());
+                            boolean plays = true;
+                            do {
+                                System.out.println("=============================");
+                                System.out.println("\t  Welcome "+users.get(0).getName());
+                                System.out.println("\t1 Profile "+users.get(0).getName()+"🐻.");
+                                System.out.println("\t2 Play Game 🎮.");
+                                System.out.println("\t3 History📋.");
+                                System.out.println("\t4 Exit.");
+                                System.out.print("Enter your choice: ");
+                                int choice1 = sc.nextInt();
+                                switch (choice1) {
+                                    case 1:{
+                                        System.out.println("==================================");
+                                        System.out.println("\t Welcome "+users.get(0).getName());
+                                        System.out.println("\t1 User_Name: "+users.get(0).getName());
+                                        System.out.println("\t2 Money: "+users.get(0).getMoney()+"💵");
+                                        System.out.println("==================================");
+                                        sc.nextLine();
+                                    }break;
+//                                    done
+                                    case 2:{
+                                        String[] item = {"🪙","🍒","🍑","🍎"};
+                                        Random r = new Random();
+                                        String again ;
+                                        String games="winner";
+                                        System.out.println("===============================================");
+                                        System.out.println("Welcome "+users.get(0).getName()+"to Game Java.🎮");
+                                        System.out.println("This Random 🪙🍒🍑🍎.");
+                                        System.out.println("1.🪙🪙🪙 = x7💵");
+                                        System.out.println("2.🍒🍒🍒 = x6💵");
+                                        System.out.println("3.🍑🍑🍑 = x5💵");
+                                        System.out.println("4.🍎🍎🍎 = x4💵");
+                                        System.out.println("5.🪙🪙 = x2💵");
+                                        System.out.println("6.🍒🍒 or 🍑🍑 or 🍎🍎 = x1💵");
+                                        do {
+                                            System.out.println("Your Money: "+users.get(0).getMoney()+"💵");
+                                            System.out.print("Enter your Money (1$-"+users.get(0).getMoney()+"$): ");
+                                            double money = sc.nextInt();
+                                            while (money<1 || money>users.get(0).getMoney()) {
+                                                System.out.println("Enter your Money again (1$-up): ");
+                                                money = sc.nextInt();
+                                            }
+                                            Server server = new Server();
+                                            server.setMoney(users.get(0).getName(),(users.get(0).getMoney()-money));
+                                            users.get(0).setDabMoney(money);
+                                            users.get(0).getMoney();
+
+                                            String a = item[r.nextInt(item.length)];
+                                            String b = item[r.nextInt(item.length)];
+                                            String c = item[r.nextInt(item.length)];
+                                            System.out.println("=========================================");
+                                            System.out.println();
+                                            System.out.println("\t 🎰 " + a + " | " + b + " | " + c);
+                                            System.out.println();
+                                            System.out.println("=========================================");
+
+                                            if (a.equals(b)&&b.equals(c)) {
+                                                switch (a) {
+                                                    case "🪙" :{
+                                                        double  winner = money*7;
+                                                        System.out.println("You Winner 🎊🎉.");
+                                                        System.out.println("Your  Money: "+money+"x7 ="+winner);
+                                                        users.get(0).setAddMoney(winner);
+                                                        server.setMoney(users.get(0).getName(),(winner+users.get(0).getMoney()));
+                                                        server.sethitory(users.get(0).getName(),games,winner);
+                                                    }break;
+                                                    case "🍒" :{
+                                                        double  winner = money*6;
+                                                        System.out.println("You Winner 🎊🎉.");
+                                                        System.out.println("Your  Money: "+money+"x6 ="+winner);
+                                                        users.get(0).setAddMoney(winner);
+                                                        server.setMoney(users.get(0).getName(),(winner+users.get(0).getMoney()));
+                                                        server.sethitory(users.get(0).getName(),games,winner);
+                                                    }break;
+                                                    case "🍑" :{
+                                                        double  winner = money*5;
+                                                        System.out.println("You Winner 🎊🎉.");
+                                                        System.out.println("Your  Money: "+money+"x5 ="+winner);
+                                                        users.get(0).setAddMoney(winner);
+                                                        server.setMoney(users.get(0).getName(),(winner+users.get(0).getMoney()));
+                                                        server.sethitory(users.get(0).getName(),games,winner);
+                                                    }break;
+                                                    case "🍎" :{
+                                                        double  winner = money*4;
+                                                        System.out.println("You Winner 🎊🎉.");
+                                                        System.out.println("Your  Money: "+money+"x4 ="+winner);
+                                                        users.get(0).setAddMoney(winner);
+                                                        server.setMoney(users.get(0).getName(),(winner+users.get(0).getMoney()));
+                                                        server.sethitory(users.get(0).getName(),games,winner);
+                                                    }break;
+
+                                                    default:{
+                                                        games="loess";
+                                                        System.out.println("You are Loess!🦦");
+                                                        server.sethitory(users.get(0).getName(),games,money);
+                                                    }break;
+                                                }
+                                            }
+                                            else if(a.equals(b)) {
+                                                switch (a){
+                                                    case "🪙" :{
+                                                        System.out.println("You Winner 🎊🎉.");
+                                                        System.out.println("Your  Money: "+money);
+                                                        users.get(0).setAddMoney(money);
+                                                        server.setMoney(users.get(0).getName(),(money+users.get(0).getMoney()));
+                                                        server.sethitory(users.get(0).getName(),games,money);
+                                                    }break;
+                                                    case "🍒" :{
+                                                        System.out.println("You Winner 🎊🎉.");
+                                                        System.out.println("Your  Money: "+money);
+                                                        users.get(0).setAddMoney(money);
+                                                        server.setMoney(users.get(0).getName(),(money+users.get(0).getMoney()));
+                                                        server.sethitory(users.get(0).getName(),games,money);
+                                                    }break;
+                                                    case "🍑" :{
+                                                        System.out.println("You Winner 🎊🎉.");
+                                                        System.out.println("Your  Money: "+money);
+                                                        users.get(0).setAddMoney(money);
+                                                        server.setMoney(users.get(0).getName(),(money+users.get(0).getMoney()));
+                                                        server.sethitory(users.get(0).getName(),games,money);
+                                                    }break;
+                                                    case "🍎" :{
+                                                        System.out.println("You Winner 🎊🎉.");
+                                                        System.out.println("Your  Money: "+money);
+                                                        users.get(0).setAddMoney(money);
+                                                        server.setMoney(users.get(0).getName(),(money+users.get(0).getMoney()));
+                                                        server.sethitory(users.get(0).getName(),games,money);
+                                                    }break;
+                                                    default:{
+                                                        games="loess";
+                                                        System.out.println("You are Loess!🦦");
+                                                        server.sethitory(users.get(0).getName(),games,money);
+                                                    }break;
+                                                }
+                                            }else if(b.equals(c)) {
+                                                switch (b){
+                                                    case "🪙" :{
+                                                        System.out.println("You Winner 🎊🎉.");
+                                                        System.out.println("Your  Money: "+money);
+                                                        users.get(0).setAddMoney(money);
+                                                        server.setMoney(users.get(0).getName(),(money+users.get(0).getMoney()));
+                                                        server.sethitory(users.get(0).getName(),games,money);
+                                                    }break;
+                                                    case "🍒" :{
+                                                        System.out.println("You Winner 🎊🎉.");
+                                                        System.out.println("Your  Money: "+money);
+                                                        users.get(0).setAddMoney(money);
+                                                        server.setMoney(users.get(0).getName(),(money+users.get(0).getMoney()));
+                                                        server.sethitory(users.get(0).getName(),games,money);
+                                                    }break;
+                                                    case "🍑" :{
+                                                        System.out.println("You Winner 🎊🎉.");
+                                                        System.out.println("Your  Money: "+money);
+                                                        users.get(0).setAddMoney(money);
+                                                        server.setMoney(users.get(0).getName(),(money+users.get(0).getMoney()));
+                                                        server.sethitory(users.get(0).getName(),games,money);
+                                                    }break;
+                                                    case "🍎" :{
+                                                        System.out.println("You Winner 🎊🎉.");
+                                                        System.out.println("Your  Money: "+money);
+                                                        users.get(0).setAddMoney(money);
+
+                                                        server.setMoney(users.get(0).getName(),(money+users.get(0).getMoney()));
+                                                        server.sethitory(users.get(0).getName(),games,money);
+                                                    }break;
+                                                    default:{
+
+                                                    }break;
+                                                }
+                                            }else {
+                                                games="loess";
+                                                System.out.println("You are Loess!🦦");
+                                                server.sethitory(users.get(0).getName(),games,money);
+                                            }
+                                            System.out.print("Play more?(y/n): ");
+                                            again = sc.next();
+                                            while (!again.equals("y") && !again.equals("n")) {
+                                                System.out.print("Choose again(y/n): ");
+                                                again = sc.next();
+                                            }
+                                            if (again.equals("n")) {
+                                                System.out.println("Game Over!");
+                                            }
+                                        }while (users.get(0).getMoney()!=0 && !again.equals("n"));
+
+                                    }break;
+                                    case 3:{
+                                        System.out.println("==================================");
+                                        System.out.println("\t This is a history game.");
+                                        System.out.println("==================================");
+                                        Server server = new Server();
+                                        server.getPlayer(users.get(0).getName());
+                                    }break;
+                                    case 4:{
+                                        plays = false;
+                                        users.remove(0);
+                                    }break;
+                                    default:{
+                                        plays = true;
+                                    }break;
+                                }
+                            }while(plays);
                         }else {
                             System.out.println("Login Failed!");
                         }
@@ -81,6 +282,7 @@ public class Main {
                 case 3:{
                     play = false;
                 }break;
+//                done
                 case 5:{}break;
                 default:{
                     play = true;
