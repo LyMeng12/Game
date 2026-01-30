@@ -31,7 +31,6 @@ public class Server {
             ps.setDouble(3, money);
             int i = ps.executeUpdate();
             if(i>0){
-                System.out.println("Create User Successfully.<UNK>");
             }else {
                 System.out.println("Create User Failed!");
             }
@@ -61,10 +60,12 @@ public class Server {
             PreparedStatement ps = con.prepareStatement("select * from tbl_information where Name=?");
             ps.setString(1, name);
             ResultSet rs = ps.executeQuery();
-            if(rs.next()){
-                System.out.println(rs.getString("Name")+rs.getString("Item")+rs.getString("Data_time")+rs.getString("Money"));
-            }else {
-                System.out.println("No Have!");
+            while (rs.next()){
+                if (rs.getString("Item").equals("winner")){
+                    System.out.println("Name:"+rs.getString("Name")+"| Game:"+rs.getString("Item")+"😎"+"| Item:"+rs.getString("Data_time")+"⏰"+"| Money:"+rs.getString("Money")+"💵");
+                }else if(rs.getString("Item").equals("loess")){
+                    System.out.println("Name:"+rs.getString("Name")+"| Game:"+rs.getString("Item")+"😵‍💫"+"| Item:"+rs.getString("Data_time")+"⏰"+"| Money:-"+rs.getString("Money")+"💵");
+                }
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
