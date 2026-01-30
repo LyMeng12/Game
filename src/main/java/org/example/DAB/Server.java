@@ -45,11 +45,6 @@ public class Server {
             ps.setDouble(1, money);
             ps.setString(2, name);
             int i = ps.executeUpdate();
-            if(i>0){
-                System.out.println("\t Start Game New.");
-            }else {
-                System.out.println("\t Start Game Failed!");
-            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -69,6 +64,42 @@ public class Server {
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
+        }
+    }
+    public void setWDMoney(String name,String wdmoney , double money){
+        try{
+            Connection con = DBConnection.getConnection();
+            PreparedStatement ps = con.prepareStatement("INSERT INTO tbl_infor_money(Name,WDMoney,DATE_TIME, Money) VALUES (?,?,NOW(),?)");
+            ps.setString(1, name);
+            ps.setString(2, wdmoney);
+            ps.setDouble(3, money);
+            int i = ps.executeUpdate();
+            if(i>0){
+                System.out.println("Successfully.");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    public void getWDMoney(String name){
+        try{
+            Connection con = DBConnection.getConnection();
+            PreparedStatement ps = con.prepareStatement("select * from tbl_infor_money where Name=?");
+            ps.setString(1, name);
+            ResultSet rs = ps.executeQuery();
+            int id=0;
+
+            while (rs.next()){
+                id++;
+                if (rs.getString("WDMoney").equals("Deposit")){
+
+                    System.out.println("ID: "+id+"| Name:"+rs.getString("Name")+"| Money: +"+rs.getString("Money")+"📈");
+                } else if (rs.getString("WDMoney").equals("Withdraw")) {
+                    System.out.println("ID: "+id+"| Name:"+rs.getString("Name")+"| Money: -"+rs.getString("Money")+"📉");
+                }
+            }
+        } catch (Exception e) {
+            System.out.print(e.getMessage());
         }
     }
 }

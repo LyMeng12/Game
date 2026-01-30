@@ -160,9 +160,9 @@ public class Main {
                                                             System.out.println("You Winner 🎊🎉.");
                                                             System.out.println("Your  Money Winner: "+money+"x2 ="+winner);
                                                             System.out.println("Your have Money: "+(users.get(0).getMoney()+winner));
-                                                            users.get(0).setAddMoney(money);
-                                                            server.setMoney(users.get(0).getName(),(money+users.get(0).getMoney()));
-                                                            server.sethitory(users.get(0).getName(),games,money);
+                                                            users.get(0).setAddMoney(winner);
+                                                            server.setMoney(users.get(0).getName(),(winner+users.get(0).getMoney()));
+                                                            server.sethitory(users.get(0).getName(),games,winner);
                                                         }break;
                                                         case "🍒" :{
                                                             System.out.println("You Winner 🎊🎉.");
@@ -199,9 +199,9 @@ public class Main {
                                                             System.out.println("You Winner 🎊🎉.");
                                                             System.out.println("Your  Money Winner: "+money+"x2 ="+winner);
                                                             System.out.println("Your have Money: "+(users.get(0).getMoney()+winner));
-                                                            users.get(0).setAddMoney(money);
-                                                            server.setMoney(users.get(0).getName(),(money+users.get(0).getMoney()));
-                                                            server.sethitory(users.get(0).getName(),games,money);
+                                                            users.get(0).setAddMoney(winner);
+                                                            server.setMoney(users.get(0).getName(),(winner+users.get(0).getMoney()));
+                                                            server.sethitory(users.get(0).getName(),games,winner);
                                                         }break;
                                                         case "🍒" :{
                                                             System.out.println("You Winner 🎊🎉.");
@@ -252,7 +252,52 @@ public class Main {
 
                                     }break;
                                     case 3:{
+                                        boolean changemoney=true;
+                                        do {
+                                            System.out.println("=============================================");
+                                            System.out.println("\t Welcome to Deposit and withdraw money💼.");
+                                            System.out.println("1.Deposit Money.");
+                                            System.out.println("2.Withdraw Money.");
+                                            System.out.println("3.History.");
+                                            System.out.println("4. Exit");
+                                            System.out.print("Enter your choice: ");
+                                            int choosmoney = sc.nextInt();
+                                            switch (choosmoney) {
+                                                case 1:{
+                                                    String Deposit= "Deposit";
+                                                    System.out.println("You have Money "+users.get(0).getMoney());
+                                                    System.out.print("Setup Money: ");
+                                                    double  money = sc.nextDouble();
+                                                    Server server = new Server();
+                                                    server.setWDMoney(users.get(0).getName(),Deposit,money);
+                                                    server.setMoney(users.get(0).getName(),(money+users.get(0).getMoney()));
+                                                    users.get(0).setAddMoney(money);
+                                                }break;
+                                                case 2:{
+                                                    String Deposit= "Withdraw";
+                                                    System.out.println("You have Money "+users.get(0).getMoney());
+                                                    System.out.print("Setup Money: ");
+                                                    double  money = sc.nextDouble();
+                                                    Server server = new Server();
+                                                    server.setWDMoney(users.get(0).getName(),Deposit,money);
+                                                    server.setMoney(users.get(0).getName(),(users.get(0).getMoney()-money));
+                                                    users.get(0).setDabMoney(money);
+                                                }break;
+                                                case 3:{
+                                                    System.out.println("==================================");
+                                                    System.out.println("\t Welcome to Recipe📋.");
+                                                    Server server = new Server();
+                                                    server.getWDMoney(users.get(0).getName());
 
+                                                }break;
+                                                case 4:{
+                                                    changemoney=false;
+                                                }break;
+                                                default:{
+                                                    changemoney=true;
+                                                }break;
+                                            }
+                                        }while (changemoney);
                                     }break;
                                     case 4:{
                                         System.out.println("==================================");
