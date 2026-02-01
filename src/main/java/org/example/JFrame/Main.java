@@ -8,42 +8,34 @@ import java.awt.*;
 
 public class Main {
     public static void main(String[] args) {
+//        JPanel = a GUI component that function as a container to hold other component.
+
+
+        JPanel panel1 = new JPanel();
+
+        panel1.setBackground(Color.BLACK);
+        panel1.setBounds(0, 0, 250, 250);
+
+        JPanel panel2 = new JPanel();
+        panel2.setBackground(Color.GREEN);
+        panel2.setBounds(250, 0, 250, 250);
+
+        JPanel panel3 = new JPanel();
+        panel3.setBackground(Color.RED);
+        panel3.setBounds(0, 250, 500, 250);
+
+
+
         JFrame frame = new JFrame();
-        JLabel label = new JLabel();
-        Border border = BorderFactory.createLineBorder(Color.blue); // Create Border
-        ImageIcon icon = new ImageIcon(
-                Main.class.getResource("/img/png.png")
-        );
-        Image img = icon.getImage().getScaledInstance(
-                250,350,Image.SCALE_SMOOTH
-        );
 
-//        JLabel
-        label.setIcon(new ImageIcon(img)); //set img
-        label.setText("I'm GoJo.");//set Text
-        label.setBackground(Color.BLACK);//set background color
-        label.setOpaque(true);// display background color
-        label.setHorizontalTextPosition(label.CENTER); // set text LEFT RIGHT or CENTER of Img
-        label.setVerticalTextPosition(label.TOP); // set text TOP  BOTTM or CENTER of Img
-        label.setBorder(border); // display Border
-        label.setIconTextGap(-70); // set gap of text to img
-        label.setFont(new Font("MV Boli", Font.PLAIN, 20)); // set size text and fomt text
-        label.setForeground(Color.BLUE); //set color text
-        label.setVerticalAlignment(label.CENTER);// set vertical position of icon+text within label
-        label.setHorizontalAlignment(label.CENTER);//set Horizontal position of icon+text within label
-//        label.setBounds(100, 100, 300, 400); // set x,y position within frame as dimensions
-
-
-
-//        JFrame
-        frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
-        frame.setTitle("GoJo.");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setTitle("JFrame");
         frame.setVisible(true);
-//        frame.setLayout(null);
-        frame.setIconImage(icon.getImage());
-//        frame.setSize(300,400);
-        frame.add(label);
-        frame.pack();
+        frame.setSize(800, 600);
+        frame.setLayout(null);
+        frame.add(panel1);
+        frame.add(panel2);
+        frame.add(panel3);
     }
 }
 
