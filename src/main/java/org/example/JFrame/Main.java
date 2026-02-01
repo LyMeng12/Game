@@ -15,13 +15,14 @@ public class Main {
 //      FlowLayout = places components in a row , sized at their preferred size.
 //                   IF the horizontal space in the container is too small,
 //                   the FlowLayout class uses the next available row.
-
+//      GridLayout = places components in a grid of cells.
+//                   Each component takes all the available space within its cell,
+//                   and each cell is the same size.
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
         frame.setSize(800, 600);
-        frame.setLayout(new FlowLayout(FlowLayout.CENTER,10,10));
-
+        frame.setLayout(new GridLayout(3,2,10,10));
         frame.add(new JButton("1"));
         frame.add(new JButton("2"));
         frame.add(new JButton("3"));
@@ -31,6 +32,9 @@ public class Main {
         frame.add(new JButton("7"));
         frame.add(new JButton("8"));
         frame.add(new JButton("9"));
+        frame.add(new JButton("10"));
+
+
     }
 }
 
