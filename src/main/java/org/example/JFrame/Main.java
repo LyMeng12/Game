@@ -8,31 +8,46 @@ import java.awt.*;
 
 public class Main {
     public static void main(String[] args) {
-//      Layout Manager = Defines the natural Layout fir components within a container
-//        3 common managers
-//      BorderLayout = a BorderLayout places components in areas: NORTH,SOUTH,WEST,EAST,CENTER
-//                     All extra is placed in center area.
-//      FlowLayout = places components in a row , sized at their preferred size.
-//                   IF the horizontal space in the container is too small,
-//                   the FlowLayout class uses the next available row.
-//      GridLayout = places components in a grid of cells.
-//                   Each component takes all the available space within its cell,
-//                   and each cell is the same size.
-        JFrame frame = new JFrame();
+//      JLayerPane = Swing container that provides a
+//                   third dimension for positioning components ex. depth, Z-index
+
+
+        JLabel label1 = new JLabel();
+        JLabel label2 = new JLabel();
+        JLabel label3 = new JLabel();
+
+
+        label1.setBackground(Color.red);
+        label1.setOpaque(true);
+        label1.setBounds(0, 0, 100, 100);
+
+        label2.setBackground(Color.GREEN);
+        label2.setOpaque(true);
+        label2.setBounds(50, 50, 100, 100);
+
+        label3.setBackground(Color.BLUE);
+        label3.setOpaque(true);
+        label3.setBounds(100, 100, 100, 100);
+
+
+        JLayeredPane layeredPane = new JLayeredPane(); // DEFAULT<PALETTE<MODEL<POPUP<DRAG
+        layeredPane.setBounds(0, 0, 800, 600);
+//        layeredPane.add(label1, JLayeredPane.DRAG_LAYER);
+//        layeredPane.add(label2, JLayeredPane.POPUP_LAYER);
+//        layeredPane.add(label3, JLayeredPane.DEFAULT_LAYER);
+        layeredPane.add(label1, Integer.valueOf(0));
+        layeredPane.add(label2, Integer.valueOf(2));
+        layeredPane.add(label3, Integer.valueOf(1));
+
+
+        JFrame frame = new JFrame("JLayerPane");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
         frame.setSize(800, 600);
-        frame.setLayout(new GridLayout(3,2,10,10));
-        frame.add(new JButton("1"));
-        frame.add(new JButton("2"));
-        frame.add(new JButton("3"));
-        frame.add(new JButton("4"));
-        frame.add(new JButton("5"));
-        frame.add(new JButton("6"));
-        frame.add(new JButton("7"));
-        frame.add(new JButton("8"));
-        frame.add(new JButton("9"));
-        frame.add(new JButton("10"));
+        frame.setVisible(true);
+        frame.add(layeredPane);
+
+
+
 
 
     }
