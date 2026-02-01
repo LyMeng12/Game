@@ -1,21 +1,43 @@
 package org.example.JFrame;
 
+
 import javax.swing.*;
-import java.net.URL;
+import javax.swing.JFrame;
+import java.awt.*;
 
 public class Main {
     public static void main(String[] args) {
+        JFrame frame = new JFrame();
+        JLabel label = new JLabel();
+        ImageIcon icon = new ImageIcon(
+                Main.class.getResource("/img/png.png")
+        );
+        Image img = icon.getImage().getScaledInstance(
+                250,350,Image.SCALE_SMOOTH
+        );
 
-        JFrame frame = new JFrame("JFrame");
+//        JLabel
+        label.setIcon(new ImageIcon(img));
+        label.setSize(300,400);
+        label.setText("I'm GoJo.");
+        label.setBackground(Color.BLACK);
+        label.setOpaque(true);
+        label.setHorizontalTextPosition(label.CENTER);
+        label.setVerticalTextPosition(label.TOP);
+        label.setIconTextGap(-25);
+        label.setFont(new Font("MV Boli", Font.PLAIN, 20));
+        label.setForeground(Color.BLUE);
 
-        URL location = Main.class.getResource("/img/png.png");
-        ImageIcon icon = new ImageIcon(location);
-        frame.setIconImage(icon.getImage());
-        frame.setSize(800, 600);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false);
-        frame.setLocationRelativeTo(null);
+
+
+//        JFrame
+        frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
+        frame.setTitle("GoJo.");
         frame.setVisible(true);
+        frame.setLayout(null);
+        frame.setIconImage(icon.getImage());
+        frame.setSize(300,400);
+        frame.add(label);
     }
 }
 
