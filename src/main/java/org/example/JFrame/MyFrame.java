@@ -5,78 +5,134 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MyFrame extends JFrame implements ActionListener {
-    JButton btn;
-    JButton btn2;
-    JLabel lbl;
-    MyFrame() {
+public class MyFrame  extends JFrame implements ActionListener{
 
-        ImageIcon icon = new ImageIcon(Main.class.getResource("/img/png.png"));
-        Image image = icon.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
-        ImageIcon icon1 = new ImageIcon(Main.class.getResource("/img/png.png"));
-        Image image1 = icon1.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+
+    JPanel label;
+    JPanel label1;
+    JPanel label2;
+    JPanel label3;
+    JPanel label4;
+
+    JButton btn;
+    JButton btn1;
+
+    JFrame frame;
+    JLayeredPane layeredPane;
+    MyFrame(){
+        ImageIcon icon = new ImageIcon(
+                Main.class.getResource("/img/png.png")
+        );
+        Image image = icon.getImage().getScaledInstance(
+                200,200,Image.SCALE_SMOOTH
+        );
+        ImageIcon icon2 = new ImageIcon(Main.class.getResource("/img/11.png"));
+        Image image2 = icon2.getImage().getScaledInstance(
+                200,200,Image.SCALE_SMOOTH
+        );
+
+        ImageIcon icon4 = new ImageIcon(Main.class.getResource("/img/left.png"));
+        Image image4 = icon4.getImage().getScaledInstance(
+                50,50,Image.SCALE_SMOOTH
+        );
+
+        ImageIcon icon5 = new ImageIcon(Main.class.getResource("/img/right.png"));
+        Image image5 = icon5.getImage().getScaledInstance(
+                50,50,Image.SCALE_SMOOTH
+        );
+
+        ImageIcon icon3 = new ImageIcon(Main.class.getResource("/img/12.webp"));
+        Image image3 = icon3.getImage().getScaledInstance(
+                200,200,Image.SCALE_SMOOTH
+        );
 
         btn = new JButton();
-        btn.setText("HI");
-        btn.setIcon(new ImageIcon(image));
-        btn.setBounds(100, 100, 150, 70);
-        btn.addActionListener(this);
-        btn.setHorizontalTextPosition(btn.CENTER);
-        btn.setIconTextGap(-10);
-        btn.setFocusable(false);
-        btn.setForeground(Color.CYAN);
-        btn.setVerticalTextPosition(btn.BOTTOM);
+        btn1 = new JButton();
+
+        btn.setIcon(new ImageIcon(image4));
         btn.setBackground(Color.LIGHT_GRAY);
-        btn.setOpaque(true);
-        btn.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        btn.setFont(new Font("Serif", Font.PLAIN, 20));
+        btn.setFocusable(Boolean.FALSE);
+        btn.setBounds(110,110,100,100);
+        btn.addActionListener(this);
 
-        btn2 = new JButton();
-        btn2.setBounds(300, 100, 150, 70);
-        btn2.setText("Bye");
-        btn2.setIcon(new ImageIcon(image));
-        btn2.setBackground(Color.LIGHT_GRAY);
-        btn2.setHorizontalTextPosition(btn2.CENTER);
-        btn2.setIconTextGap(-10);
-        btn2.setVerticalTextPosition(btn2.BOTTOM);
-        btn2.setOpaque(true);
-        btn2.addActionListener(this);
-        btn2.setFocusable(false);
-        btn2.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        btn.setSize(100,50);
 
+        btn1.setIcon(new ImageIcon(image5));
+        btn1.setBackground(Color.LIGHT_GRAY);
+        btn1.setBounds(110,110,100,100);
+        btn1.setFocusable(Boolean.FALSE);
+        btn1.addActionListener(this);
+        btn1.setSize(100,50);
 
-        lbl = new JLabel(new ImageIcon(image1));
-        lbl.setBounds(150,250,200,200);
-        lbl.setVisible(false);
-        lbl.setText("Hello! I'm GoJo!");
-        lbl.setForeground(Color.blue);
-        lbl.setHorizontalTextPosition(btn.CENTER);
-        lbl.setVerticalTextPosition(btn.TOP);
-        lbl.setFont(new Font("Serif", Font.PLAIN, 20));
-        lbl.setIconTextGap(-25);
+//        label1
+        label = new JPanel();
+        label.setBounds(0,0,300,300);
+        label.setBackground(Color.red);
+        label.add(btn);
 
+        label1 = new JPanel();
+        label1.setBounds(300,0,300,300);
+        label1.setBackground(Color.GREEN);
+        label1.setOpaque(true);
+//        label1.setHorizontalTextPosition(btn1.CENTER);
+//        label1.setVerticalTextPosition(btn1.CENTER);
+        label1.add(btn1);
 
+        label2 = new JPanel();
+        label2.setBounds(0,300,600,300);
+        label2.setBackground(Color.BLUE);
+        label2.setOpaque(true);
 
+        label3 = new JPanel();
+        label3.setBounds(0,300,600,300);
+        label3.setBackground(Color.black);
+        label3.setOpaque(true);
 
+        label4 = new JPanel();
+        label4.setBounds(0,300,600,300);
+        label4.setBackground(Color.GRAY);
+        label4.setOpaque(true);
 
-        this.setTitle("I'm GoJo.");
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(500, 500);
-        this.setVisible(true);
-        this.add(btn);
-        this.add(lbl);
-        this.add(btn2);
-        this.setLayout(null);
+        layeredPane = new JLayeredPane();
+        layeredPane.add(label,JLayeredPane.DEFAULT_LAYER);
+        layeredPane.add(label1,JLayeredPane.DEFAULT_LAYER);
+//        layeredPane.add(label2,JLayeredPane.DEFAULT_LAYER);
+        layeredPane.setBounds(0,0,600,600);
+
+//        frame
+        frame = new JFrame();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+        frame.setIconImage(image);
+        frame.setSize(600,600);
+        frame.setLayout(null);
+
+        frame.add(layeredPane);
     }
-
+    int i = 0;
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource()==btn){
-            lbl.setVisible(true);
-            System.out.println("I'm GoJo.");
+
+        if (e.getSource() == btn) {
+            i++;
+            if (i > 3) i = 1;
+            System.out.println("i = "+i);
         }
-        else if (e.getSource()==btn2){
-            lbl.setVisible(false);
+
+        if (e.getSource() == btn1) {
+            i--;
+            if (i < 1) i = 3;
+            System.out.println("i = "+i);
         }
+
+        switch (i) {
+            case 1 -> layeredPane.add(label2, Integer.valueOf(1));
+            case 2 -> layeredPane.add(label3, Integer.valueOf(1));
+            case 3 -> layeredPane.add(label4, Integer.valueOf(1));
+        }
+
+        layeredPane.repaint();
+
     }
+
 }
