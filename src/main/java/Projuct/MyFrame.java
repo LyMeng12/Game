@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 public class MyFrame extends JFrame implements ActionListener {
     JFrame frame;
     JButton btn;
+    JButton btn1;
     TextField textField;
     TextField textField1;
     MyFrame() {
@@ -49,11 +50,20 @@ public class MyFrame extends JFrame implements ActionListener {
 
         btn = new JButton("Submit");
         btn.setFont(new Font("MV Boli", Font.PLAIN, 18));
-        btn.setBounds(370, 300, 170, 50);
+        btn.setBounds(300, 300, 130, 50);
         btn.setFocusable(Boolean.FALSE);
         btn.setForeground(Color.WHITE);
         btn.setBackground(new Color(81, 51, 26));
         btn.addActionListener(this);
+
+        btn1=new JButton("Register");
+        btn1.setFont(new Font("MV Boli", Font.PLAIN, 18));
+        btn1.setBounds(500, 300, 130, 50);
+        btn1.setBackground(new Color(81, 51, 26));
+        btn1.setFocusable(Boolean.FALSE);
+        btn1.setForeground(Color.WHITE);
+        btn1.addActionListener(this);
+
 
 
 
@@ -79,6 +89,7 @@ public class MyFrame extends JFrame implements ActionListener {
         frame.add(label2);
         frame.add(label3);
         frame.add(btn);
+        frame.add(btn1);
     }
 
     @Override
@@ -89,6 +100,9 @@ public class MyFrame extends JFrame implements ActionListener {
                 new NewFrame();
             }
 
+        }else if (e.getSource()==btn1){
+            frame.dispose();
+            new Register();
         }
 
     }
