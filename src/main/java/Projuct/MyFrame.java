@@ -8,6 +8,8 @@ import java.awt.event.ActionListener;
 public class MyFrame extends JFrame implements ActionListener {
     JFrame frame;
     JButton btn;
+    TextField textField;
+    TextField textField1;
     MyFrame() {
         frame = new JFrame();
 
@@ -24,9 +26,9 @@ public class MyFrame extends JFrame implements ActionListener {
         JLabel label1 = new JLabel();
         label1.setBounds(300, 60, 500, 150);
         label1.setFont(new Font("MV Boli", Font.BOLD, 18));
-        TextField textField = new TextField();
+        textField = new TextField();
         textField.setFont(new Font("MV Boli", Font.PLAIN, 18));
-        textField.setBounds(0, 90, 330, 40);
+        textField.setBounds(0, 90, 330, 30);
         label1.setText("Enter Your Name:");
 //        label1.setBackground(Color.cyan);
 //        label1.setOpaque(true);
@@ -36,9 +38,9 @@ public class MyFrame extends JFrame implements ActionListener {
         label3.setBounds(300, 140, 500, 150);
         label3.setFont(new Font("MV Boli", Font.BOLD, 18));
         label3.setText("Enter Your Password:");
-        TextField textField1 = new TextField();
+        textField1=new TextField();
         textField1.setFont(new Font("MV Boli", Font.BOLD, 18));
-        textField1.setBounds(0, 90, 330, 40);
+        textField1.setBounds(0, 90, 330, 30);
         label3.add(textField1);
 //        label3.setBackground(Color.BLACK);
 //        label3.setOpaque(true);
@@ -82,8 +84,11 @@ public class MyFrame extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource()==btn){
-            frame.dispose();
-            new NewFrame();
+            if(textField.getText().equals("meng") || textField1.getText().equals("123")) {
+                frame.dispose();
+                new NewFrame();
+            }
+
         }
 
     }
