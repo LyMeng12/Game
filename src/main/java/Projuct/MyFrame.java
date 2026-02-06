@@ -9,8 +9,9 @@ public class MyFrame extends JFrame implements ActionListener {
     JFrame frame;
     JButton btn;
     JButton btn1;
+    JOptionPane pane;
     TextField textField;
-    TextField textField1;
+    JPasswordField textField1;
     MyFrame() {
         frame = new JFrame();
 
@@ -39,7 +40,7 @@ public class MyFrame extends JFrame implements ActionListener {
         label3.setBounds(300, 140, 500, 150);
         label3.setFont(new Font("MV Boli", Font.BOLD, 18));
         label3.setText("Enter Your Password:");
-        textField1=new TextField();
+        textField1=new JPasswordField();
         textField1.setFont(new Font("MV Boli", Font.BOLD, 18));
         textField1.setBounds(0, 90, 330, 30);
         label3.add(textField1);
@@ -83,6 +84,7 @@ public class MyFrame extends JFrame implements ActionListener {
         frame.setResizable(false);
         frame.setSize(800, 500);
         frame.setVisible(true);
+        frame.setLocationRelativeTo(null);
         frame.getContentPane().setBackground(new Color(189, 156, 127));
         frame.add(label);
         frame.add(label1);
@@ -95,9 +97,18 @@ public class MyFrame extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource()==btn){
-            if(textField.getText().equals("meng") || textField1.getText().equals("123")) {
-                frame.dispose();
-                new NewFrame();
+            if(textField.getText().equals("meng")) {
+                if (textField1.getText().equals("123")){
+                    frame.dispose();
+                    new NewFrame();
+                }else {
+                    JOptionPane.showMessageDialog(null, "Please Enter Your Password again!", "Error", JOptionPane.INFORMATION_MESSAGE);
+                    textField1.setText("");
+                }
+            }else {
+             JOptionPane.showMessageDialog(null, "User is not have!", "Error", JOptionPane.INFORMATION_MESSAGE);
+             textField.setText("");
+             textField1.setText("");
             }
 
         }else if (e.getSource()==btn1){
