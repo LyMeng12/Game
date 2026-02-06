@@ -99,6 +99,7 @@ public class MyFrame extends JFrame implements ActionListener {
         if (e.getSource()==btn){
             if(textField.getText().equals("meng")) {
                 if (textField1.getText().equals("123")){
+                    JOptionPane.showMessageDialog(null,"Welcome User "+textField.getText().toUpperCase(),"Welcome",JOptionPane.INFORMATION_MESSAGE);
                     frame.dispose();
                     new NewFrame();
                 }else {
@@ -113,6 +114,7 @@ public class MyFrame extends JFrame implements ActionListener {
 
         }else if (e.getSource()==btn1){
             frame.dispose();
+
             new Register();
         }
 
