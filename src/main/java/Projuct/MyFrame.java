@@ -9,7 +9,6 @@ public class MyFrame extends JFrame implements ActionListener {
     JFrame frame;
     JButton btn;
     JButton btn1;
-    JOptionPane pane;
     TextField textField;
     JPasswordField textField1;
     MyFrame() {
@@ -29,7 +28,7 @@ public class MyFrame extends JFrame implements ActionListener {
         label1.setBounds(300, 60, 500, 150);
         label1.setFont(new Font("MV Boli", Font.BOLD, 18));
         textField = new TextField();
-        textField.setFont(new Font("MV Boli", Font.PLAIN, 18));
+        textField.setFont(new Font("MV Boli", Font.BOLD, 18));
         textField.setBounds(0, 90, 330, 30);
         label1.setText("Enter Your Name:");
 //        label1.setBackground(Color.cyan);
@@ -44,8 +43,20 @@ public class MyFrame extends JFrame implements ActionListener {
         textField1.setFont(new Font("MV Boli", Font.BOLD, 18));
         textField1.setBounds(0, 90, 330, 30);
         label3.add(textField1);
-//        label3.setBackground(Color.BLACK);
-//        label3.setOpaque(true);
+        JCheckBox checkBox = new JCheckBox();
+        checkBox.setFont(new Font("MV Boli", Font.PLAIN, 15));
+        checkBox.setBackground(new Color(189, 156, 127));
+        checkBox.addActionListener(e -> {
+            if (checkBox.isSelected()) {
+                textField1.setEchoChar((char) 0);
+            }else {
+                textField1.setEchoChar('*');
+            }
+        });
+        checkBox.setBounds(300, 260, 330, 30);
+        checkBox.setText("Show Password");
+
+
 
 
 
@@ -90,6 +101,7 @@ public class MyFrame extends JFrame implements ActionListener {
         frame.add(label1);
         frame.add(label2);
         frame.add(label3);
+        frame.add(checkBox);
         frame.add(btn);
         frame.add(btn1);
     }
@@ -114,7 +126,6 @@ public class MyFrame extends JFrame implements ActionListener {
 
         }else if (e.getSource()==btn1){
             frame.dispose();
-
             new Register();
         }
 

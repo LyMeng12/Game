@@ -2,8 +2,8 @@ package Projuct;
 
 public class Main {
     public static void main(String[] args) {
-        new MyFrame();
-//        new NewFrame();
+//        new MyFrame();
 //        new Register();
+        new NewFrame();
     }
 }

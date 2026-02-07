@@ -1,5 +1,7 @@
 package Projuct;
 
+import Projuct.Meun.Dashboard;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -18,17 +20,27 @@ public class NewFrame implements ActionListener {
     JButton btn_Logout;
 
     JLabel label_Dashboard;
+    JLabel getLabel_Dashboard_money;
+    JLabel getLabel_Dashboard_User;
+    JLabel getLabel_Dashboard_Drink;
+    JLabel getLabel_Dashboard_Category;
+
+
     JLabel label_Employee;
+    JLabel getLabel_Employee_User;
+    JButton btn_Employee_Search;
+    JButton btn_Employee_Add;
+    JButton btn_Employee_Edite;
+    JButton btn_Employee_Delete;
+
     JLabel label_Category;
     JLabel label_Drink;
 
     NewFrame() {
         ImageIcon icon = new ImageIcon(Main.class.getResource("/img/png.png"));
         Image image = icon.getImage().getScaledInstance(300, 300, Image.SCALE_SMOOTH);
-
         ImageIcon icon1 = new ImageIcon(Main.class.getResource("/img/png.png"));
         Image image1 = icon1.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-
         ImageIcon Dashborad_icon = new ImageIcon(Main.class.getResource("/btn_icon/dashboard.png"));
         Image Dashborad = Dashborad_icon.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
         ImageIcon Drink_icon = new ImageIcon(Main.class.getResource("/btn_icon/soda.png"));
@@ -39,6 +51,7 @@ public class NewFrame implements ActionListener {
         Image Employee = Employee_icon.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
         ImageIcon Logout_icon = new ImageIcon(Main.class.getResource("/btn_icon/logout.png"));
         Image Logout = Logout_icon.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+
 
 
 
@@ -137,22 +150,35 @@ public class NewFrame implements ActionListener {
         label_Dashboard = new JLabel();
         label_Dashboard.setBackground(Color.GREEN);
         label_Dashboard.setOpaque(true);
+        getLabel_Dashboard_money = new JLabel();
+        getLabel_Dashboard_money.setBackground(Color.WHITE);
+        getLabel_Dashboard_money.setFont(new Font("Arial", Font.BOLD, 20));
+        getLabel_Dashboard_money.setHorizontalAlignment(SwingConstants.LEFT);
+        getLabel_Dashboard_money.setVerticalAlignment(SwingConstants.CENTER);
+        getLabel_Dashboard_money.setBorder(BorderFactory.createLineBorder(new Color(89, 50, 41)));
+        getLabel_Dashboard_money.setOpaque(true);
+        getLabel_Dashboard_User = new JLabel();
+        getLabel_Dashboard_Drink = new JLabel();
+        getLabel_Dashboard_Category = new JLabel();
+        label_Dashboard.add(getLabel_Dashboard_money);
+        label_Dashboard.add(getLabel_Dashboard_User);
+        label_Dashboard.add(getLabel_Dashboard_Drink);
+        label_Dashboard.add(getLabel_Dashboard_Category);
+
         label_Dashboard.setVisible(true);
 
         label_Category= new JLabel();
         label_Category.setBackground(Color.black);
         label_Category.setOpaque(true);
-        label_Category.setVisible(false);
 
         label_Employee= new JLabel();
         label_Employee.setBackground(Color.red);
         label_Employee.setOpaque(true);
-        label_Employee.setVisible(false);
 
         label_Drink= new JLabel();
         label_Drink.setBackground(Color.blue);
         label_Drink.setOpaque(true);
-        label_Drink.setVisible(false);
+
 
 
 

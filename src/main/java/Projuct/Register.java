@@ -17,7 +17,6 @@ public class Register implements ActionListener {
     JLabel lbl_name;
     JLabel lbl_password;
     JLabel lbl_comfripassword;
-    JLabel lbl_btn;
     Register(){
         ImageIcon icon = new ImageIcon(Main.class.getResource("/img/png.png"));
 
@@ -34,6 +33,7 @@ public class Register implements ActionListener {
         textField_name = new TextField();
         textField_name.setEditable(true);
         textField_name.setBounds(190,35,330,30);
+        textField_name.setFont(new Font("Arial", Font.BOLD, 18));
         lbl_name.setFont(new Font("Arial", Font.PLAIN, 20));
         lbl_name.add(textField_name);
         lbl_name.setHorizontalAlignment(lbl_name.LEFT);
@@ -43,7 +43,8 @@ public class Register implements ActionListener {
         lbl_password.setText("Password:");
         pass = new JPasswordField();
         pass.setBounds(190,20,330,30);
-        lbl_password.setFont(new Font("Arial", Font.PLAIN, 20));
+        pass.setFont(new Font("Arial", Font.BOLD, 20));
+        lbl_password.setFont(new Font("Arial", Font.PLAIN, 18));
         lbl_password.add(pass);
         lbl_password.setHorizontalAlignment(lbl_password.LEFT);
         lbl_password.setVerticalAlignment(lbl_password.CENTER);
@@ -52,7 +53,8 @@ public class Register implements ActionListener {
         lbl_comfripassword.setText("ConfirmPassword :");
         comfripass = new JPasswordField();
         comfripass.setBounds(190,20,330,30);
-        lbl_comfripassword.setFont(new Font("Arial", Font.PLAIN, 20));
+        comfripass.setFont(new Font("Arial", Font.BOLD, 20));
+        lbl_comfripassword.setFont(new Font("Arial", Font.PLAIN, 18));
         lbl_comfripassword.add(comfripass);
         lbl_comfripassword.setHorizontalAlignment(lbl_comfripassword.LEFT);
         lbl_comfripassword.setVerticalAlignment(lbl_comfripassword.CENTER);
@@ -65,6 +67,21 @@ public class Register implements ActionListener {
         btn.setForeground(Color.WHITE);
         btn.setBackground(new Color(81, 51, 26));
         btn.addActionListener(this);
+
+        JCheckBox chckbx = new JCheckBox();
+        chckbx.setFont(new Font("MV Boli", Font.PLAIN, 15));
+        chckbx.setBounds(310,260,330,30);
+        chckbx.setText("Show Password");
+        chckbx.addActionListener(e -> {
+           if (chckbx.isSelected()) {
+               pass.setEchoChar((char) 0);
+               comfripass.setEchoChar((char) 0);
+           } else {
+               pass.setEchoChar('*');
+               comfripass.setEchoChar('*');
+           }
+        });
+        chckbx.setBackground(new Color(189, 156, 127));
 
         frame = new JFrame();
         frame.setIconImage(icon.getImage());
@@ -80,6 +97,7 @@ public class Register implements ActionListener {
         frame.add(lbl_name);
         frame.add(lbl_password);
         frame.add(lbl_comfripassword);
+        frame.add(chckbx);
         frame.add(btn);
 
         lbl_title.setBounds(0, 0, frame.getWidth(), 70);
@@ -97,14 +115,14 @@ public class Register implements ActionListener {
                 pass.setText("");
                 comfripass.setText("");
             }else {
-                if (!pass.getText().equals(comfripass.getText())) {
+                if (!pass.getText().equals(comfripass.getText())|| pass.getText().equals("") && comfripass.getText().equals("")) {
                     JOptionPane.showMessageDialog(null, "Please Enter Password Again!","Error",JOptionPane.INFORMATION_MESSAGE);
                     pass.setText("");
                     comfripass.setText("");
                 }
                 else {
-                    frame.dispose();
                     JOptionPane.showOptionDialog(frame,"Create New User is successful","Error",JOptionPane.DEFAULT_OPTION,JOptionPane.INFORMATION_MESSAGE,null,null,null);
+                    frame.dispose();
                     new MyFrame();
                 }
             }
